@@ -11,7 +11,13 @@ class usuarioControles extends CI_Controller
 
     public function register()
     {
-        $this->load->view('vistas/register');
+        $instrumentos = $this->usuarioModelo->traerInstrumentos();
+        $generos = $this->usuarioModelo->traerGenerosmusicales();
+        $data['instrumentos'] = $instrumentos;
+        $data['generos'] = $generos;
+
+        $this->load->view('vistas/register', $data);
+     
     }
 
     public function menu()
@@ -29,30 +35,69 @@ class usuarioControles extends CI_Controller
         $fullname = $this->input->post('fullname');
         $direccion = $this->input->post('direccion');
         $instrumentos = $this->input->post('instrumentos');
-        $generomusical = $this->input->post('generomusical');
+        $generomusical = $this->input->post('generos');
         //$photo = $this->input->post('photo');
         $email = $this->input->post('email');
         $password = $this->input->post('password');
         
+        /*print_r($this->input->post());
+        die;*/
 		$usuario = array(
             'fullname' => $fullname,
             'direccion' => $direccion,
-            'instrumentos' => $instrumentos,
-            'generomusical' => $generomusical,
             //'photo' => $photo,
             'email' => $email,
             'password' => $password
         );
-		// call the model to save
-		$r = $this->usuarioModelo->guardarUsuario($usuario);
 
-		// redirect
-        if ($r) {
+        $r = $this->usuarioModelo->guardarUsuario($usuario);
+        
+
+        
+        if ($r){
+         foreach($instrumentos as $instrumento){
+             /*$id = $instrumento;
+             echo($instrumento);
+             die;*/
+            $usuarioinstrumento = array(
+                'email' => $email,
+                'instrumento' => $instrumento);
+        $r1 = $this->usuarioModelo->guardarUsuarioinstrumentos($usuarioinstrumento);
+
+            
+         }
+        }
+
+         if ($r1){
+             /*var_dump($generomusical);
+             die;*/
+            foreach($generomusical as $genero){
+                /*$id = $instrumento;
+                echo($genero);
+                die;*/
+                $usuariogenero = array(            
+                    'email' => $email,
+                    'genero' => $genero
+                );
+                $r2 = $this->usuarioModelo->guardarUsuariogenero($usuariogenero);
+         }
+         
+           
+        }
+        
+
+         
+
+        
+		// call the model to save
+		
+        
+        if ($r & $r1 & $r2) {
             // $this->session->set_flashdata('message', 'User saved');
             redirect('login');
         } else {
             // $this->session->set_flashdata('message', 'There was an error saving the user');
-            redirect('vistas/register');
+            redirect('register');
         }
     }
 
@@ -68,5 +113,18 @@ class usuarioControles extends CI_Controller
                     echo "Invalid usuario name or password";
                 }
             }
+
+           
+
+          
+
+             public function listUsuarios() {
+            $usuarios = $this->usuarioModelo->traerUsuarios();
+
+             $data['usuarios'] = $usuarios;
+
+           $this->load->view('vistas/busqueda', $data);
+           }
+
 
 }

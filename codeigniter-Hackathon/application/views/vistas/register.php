@@ -35,12 +35,31 @@
                            <input type="text" name="direccion" placeholder="Direccion" required class="form-control" id="form-direccion" >
                         </div>
 
-                        Instrumentos:<br/>
-                        <input type= "checkbox" name= "instrumentos" value= "piano" tabindex= "piano"/>piano<br/>
-                        <br/>   
-                        Genero Musicales:<br/>
-                        <input type= "checkbox" name= "generomusical" value= "rock" tabindex= "rock"/>rock<br/>
-                        <br/>
+                        <div class="form-group">
+                        <h1>Intrumentos Musicales</h1>
+                    
+                           <?php foreach($instrumentos as $instrumento){ ?>
+                                <div class = "checkbox">
+                                <label><input type="checkbox" name = "instrumentos[]" 
+                                value= "<?php echo "$instrumento->id"?>" >
+                                <?php echo "$instrumento->nombreinstrumento"?></label>
+                                
+                                </div>
+                           <?php }?>
+
+                        </div>
+                         
+                        <div class="form-group">
+                        <h1>Generos Musicales</h1>
+                           <?php foreach($generos as $genero){ ?>
+                                <div class = "checkbox">
+                                <label><input type="checkbox" name = "generos[]"
+                                 value ="<?php echo "$genero->id"?>" ><?php echo "$genero->nombregeneromusical"?></label>
+                                
+                                </div>
+                           <?php }?>
+
+                        </div>
                         Foto de Perfil:<br/>
                         <!--<input type= "file" name= "photo" />photo<br/>-->
                         
