@@ -17,8 +17,8 @@
                <div class="col-sm-6 col-sm-offset-3 myform-cont" >
                   <div class="myform-top">
                      <div class="myform-top-left">
-                        <h3>Usa nuetra aplicacion web</h3>
-                        <p>Digita tu usuario y contraseña:</p>
+                        <h3>Busca musicos</h3>
+                        <p>Que tipo de musico buscas?:</p>
                      </div>
                      <div class="myform-top-right">
                         <i class="fa fa-key"></i>
@@ -26,20 +26,37 @@
                   </div>
                   <div class="myform-bottom">
                   
-                     <form role="form" method="POST" class="form-login" action="usuarioControles/validacion">
-                        <div class="form-group">
-                           <input type="text" name="email" placeholder="email..." required class="form-control" id="form-email"  >
-                        </div>
+                     <form role="form" method="POST" class="form-login" action="usuarioControles/traerUsuariosbusqueda">
                         
-                        <div class="form-group">
-                           <input type="password" name="password" placeholder="Contraseña..." required class="form-control" id="form-password" >
-                        </div>
-                        <div class="form-group">
-                           <input type="password" name="password" placeholder="Contraseña..." required class="form-control" id="form-password" >
-                        </div>
-                        <div class="form-group">
-                           <input type="password" name="password" placeholder="Contraseña..." required class="form-control" id="form-password" >
-                        </div>
+
+                     
+                           
+                    <div class="form-group">
+                         <h1>Intrumentos Musicales</h1>
+
+
+                            <select name="instrumento" id="">
+                            <?php foreach($instrumentos as $index=> $value){?>
+                                <option name="" value="<?php echo $value->id ?>"><?php echo $value->nombreinstrumento ?></option>
+                            <?php } ?>
+                            </select>
+
+                            </div>
+                            
+                            <div class="form-group">
+                        <h1>Generos Musicales</h1>
+                        <select name="genero" id="">
+                            <?php foreach($generos as $index=> $value){?>
+                                <option name="" value="<?php echo $value->id ?>"><?php echo $value->nombregeneromusical ?></option>
+                            <?php } ?>
+                            </select>  
+
+                    </div>
+
+                  
+
+
+
                         <button type = "submit" class= "btn btn-lg btn-success"  id="bntLogin" >Buscar</button>
                         <a href= "login" class="btn btn-lg btn-primary ">Salir</a>
 

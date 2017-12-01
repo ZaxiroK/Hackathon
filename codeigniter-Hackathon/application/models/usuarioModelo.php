@@ -44,7 +44,7 @@ class usuarioModelo extends CI_Model {
     {
       $query = $this->db->get('instrumentos');
   
-      return $query->result();
+      return $query->result_object();
     }
 
     function traerGenerosmusicales()
@@ -59,6 +59,31 @@ class usuarioModelo extends CI_Model {
   
       return $query->result_object();
     }
+
+    function traerUsuariosbusqueda($idgenero, $idinstrumento)
+    {
+      $sql= "SELECT m.id, m.fullname, m.email, m.direccion from usuario m, usuarioinstrumentos ai, 
+      usuariogenero am where m.email = am.email and am.genero = $idgenero
+      AND
+      m.email = ai.email and ai.instrumento = $idinstrumento
+  
+      group by m.id";
+      $res =$this->db->query($sql);
+
+      return $res->result();
+    }
+
+    function verUsuario($idusuario)
+    {
+        $sql= "SELECT * FROM `usuario` WHERE usuario.id = $idusuario";
+        $res =$this->db->query($sql);
+        /*echo($res);
+         die;*/
+
+	  return $res->result();
+    }
+
+    
    
 
 }

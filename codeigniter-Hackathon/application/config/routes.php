@@ -53,6 +53,7 @@ $route['login'] = 'usuarioControles/login';
 $route['register'] = 'usuarioControles/register';
 $route['menu'] = 'usuarioControles/menu';
 $route['resultado'] = 'usuarioControles/resultado';
+$route['verUsuario/(:num)/ver'] = 'usuarioControles/ver/$1';
 $route['default_controller'] = 'usuarioControles';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -9,6 +9,7 @@ class usuarioControles extends CI_Controller
         $this->load->view('vistas/login');
     }
 
+
     public function register()
     {
         $instrumentos = $this->usuarioModelo->traerInstrumentos();
@@ -22,13 +23,24 @@ class usuarioControles extends CI_Controller
 
     public function menu()
     {
-        $this->load->view('vistas/menu');
+        $instrumentos = $this->usuarioModelo->traerInstrumentos();
+        $generos = $this->usuarioModelo->traerGenerosmusicales();
+        $data['instrumentos'] = $instrumentos;
+        $data['generos'] = $generos;
+        $this->load->view('vistas/menu',$data);
     }
 
-    public function resultado()
+    public function ver($id)
     {
-        $this->load->view('vistas/resultado');
+        /*$instrumentos = $this->usuarioModelo->traerInstrumentos();
+        $generos = $this->usuarioModelo->traerGenerosmusicales();
+        $data['instrumentos'] = $instrumentos;*/
+        $usuario = $this->usuarioModelo->verUsuario($id);
+        $data['usuario']=$usuario;
+        $this->load->view('vistas/ver',$data);
     }
+
+    
     
     public function guardarUsuario()
     {
@@ -114,17 +126,37 @@ class usuarioControles extends CI_Controller
                 }
             }
 
+            function traerUsuariosbusqueda(){
+                $idgenero = $this->input->post('genero');
+                $idinstrumento = $this->input->post('instrumento');
+                /*var_dump($_POST);
+                die;*/
+                $r = $this->usuarioModelo->traerUsuariosbusqueda($idgenero, $idinstrumento);
+                if (count($r) > 0 ) {
+                    $usuario = $r[0];
+                    /*var_dump($r);
+                    die;*/
+                    $data['r'] = $r;
+                    $this->load->view('vistas/resultado',$data);
+                } else {
+                    redirect ('menu');
+                }
+            }
+            
+          
            
 
           
 
-             public function listUsuarios() {
+            /* public function listUsuarios() {
             $usuarios = $this->usuarioModelo->traerUsuarios();
 
              $data['usuarios'] = $usuarios;
 
            $this->load->view('vistas/busqueda', $data);
-           }
+           }*/
+
+           
 
 
 }
