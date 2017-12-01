@@ -17,8 +17,8 @@
                <div class="col-sm-6 col-sm-offset-3 myform-cont" >
                   <div class="myform-top">
                      <div class="myform-top-left">
-                        <h3>Busca musicos</h3>
-                        <p>Que tipo de musico buscas?:</p>
+                    
+                        <p>Resultados de la busqueda:</p>
                      </div>
                      <div class="myform-top-right">
                         <i class="fa fa-key"></i>
@@ -38,18 +38,7 @@
             <th>Ver</th>
         </tr>
         
-       <?php 
-           /*  $consulta = "SELECT * FROM usuarios";
-            $ejecutar = mysqli_query($conexion, $consulta);
-            $i = 0;
-            while($fila= mysqli_fetch_array($ejecutar)){
-                $id= $fila['id'];
-                $usuario= $fila['username'];
-                $password= $fila['password'];
-                $email= $fila['email'];
-                $i++;
-            */
-        ?>
+       
 
 
             <?php foreach($r as $usuario){?>
@@ -71,7 +60,7 @@
             </div>
 
                         
-                        <a href= "menu" class="btn btn-lg btn-primary ">Salir</a>
+                        <a href= "../menu" class="btn btn-lg btn-primary ">Salir</a>
 
                      </form>
                   </div>

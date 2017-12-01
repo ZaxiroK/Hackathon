@@ -40,7 +40,9 @@
                                      }
                                  ?>
                      </div>
-                        <a href= "resultado" class="btn btn-lg btn-primary ">Salir</a>
+
+                        <a href= "../../menu" class="btn btn-lg btn-primary ">Salir</a>
+                                     
 
                      </form>
                   </div>

@@ -32,11 +32,13 @@ class usuarioControles extends CI_Controller
 
     public function ver($id)
     {
-        /*$instrumentos = $this->usuarioModelo->traerInstrumentos();
-        $generos = $this->usuarioModelo->traerGenerosmusicales();
-        $data['instrumentos'] = $instrumentos;*/
+        
         $usuario = $this->usuarioModelo->verUsuario($id);
+        //$instrumentos = $this->usuarioModelo->traerInstrumentosUsuario();
+       // $generos = $this->usuarioModelo->traerGenerosUsuario();
         $data['usuario']=$usuario;
+        //$data['instrumentos'] = $instrumentos;
+        //$data['generos'] = $generos;
         $this->load->view('vistas/ver',$data);
     }
 
@@ -97,9 +99,6 @@ class usuarioControles extends CI_Controller
            
         }
         
-
-         
-
         
 		// call the model to save
 		

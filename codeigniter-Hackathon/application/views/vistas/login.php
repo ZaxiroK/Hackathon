@@ -18,7 +18,7 @@
                   <div class="myform-top">
                      <div class="myform-top-left">
                         <h3>Bienvenido</h3>
-                        <p>Realizar busqueda</p>
+                        <p>Login </p>
                      </div>
                      <div class="myform-top-right">
                         <i class="fa fa-key"></i>

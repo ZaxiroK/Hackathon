@@ -9,7 +9,8 @@ class usuarioModelo extends CI_Model {
          parent::__construct();
 
      }
-
+     
+     
      function guardarUsuario($usuario)
     {
            //$user['password'] = md5($user['password']);
@@ -79,8 +80,43 @@ class usuarioModelo extends CI_Model {
         $res =$this->db->query($sql);
         /*echo($res);
          die;*/
+         
+      return $res->result();
+      
+      foreach($res as $index=> $value){
+        echo($value->email);
+        die;
+        traerInstrumentosUsuario($value->email );
+        traerGenerosUsuario($value->emaill);
+      }
+    
+    }
 
-	  return $res->result();
+    function traerInstrumentosUsuario($email)
+    {
+      
+          $sql= "SELECT i.id, i.nombreinstrumento from instrumentos i, usuarioinstrumentos ui,
+           usuario u where i.id = ui.instrumento and ui.email = $email
+
+          group by i.id";
+
+          $res =$this->db->query($sql);
+          
+                return $res->result();
+          
+    }
+
+    function traerGenerosUsuario($email)
+    {
+    
+          $sql= "SELECT g.id, g.nombregeneromusical from generosmusicales g, usuariogenero ug, usuario u where g.id = ug.genero and ug.email = $email
+          
+           group by g.id";
+
+          $res =$this->db->query($sql);
+          
+          return $res->result();
+          
     }
 
     
